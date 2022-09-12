@@ -9,7 +9,7 @@ RUN npm install
 
 EXPOSE 8080
 
-RUN npm prisma generate
+RUN npx prisma generate
 RUN npm install pm2 -g
 
 CMD ["yarn","start"]
