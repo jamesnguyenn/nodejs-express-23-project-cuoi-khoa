@@ -1,0 +1,110 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model cineflex {
+  id     Int      @id @default(autoincrement())
+  name   String?  @db.VarChar(255)
+  logo   String?  @db.VarChar(255)
+  cinema cinema[]
+}
+
+model cinema {
+  id         Int        @id @default(autoincrement())
+  name       String     @db.VarChar(255)
+  address    String?    @db.VarChar(255)
+  image      String?    @db.VarChar(255)
+  cineplexId Int?
+  cineflex   cineflex?  @relation(fields: [cineplexId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "cinema_ibfk_1")
+  showtime   showtime[]
+
+  @@index([cineplexId], map: "cineplexId")
+}
+
+model cinema_movie {
+  id       Int    @id @default(autoincrement())
+  cinemaId Int?
+  movieId  Int?
+  movie    movie? @relation(fields: [movieId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "cinema_movie_ibfk_1")
+
+  @@index([movieId], map: "movieId")
+}
+
+model movie {
+  id           Int            @id @default(autoincrement())
+  name         String         @db.VarChar(255)
+  startDate    DateTime?      @db.DateTime(0)
+  time         DateTime?      @db.DateTime(0)
+  evaluate     Int?
+  poster       String         @db.VarChar(255)
+  trailer      String?        @db.VarChar(255)
+  banner       banner[]
+  cinema_movie cinema_movie[]
+  ticket       ticket[]
+}
+
+model role {
+  id   String  @id @db.VarChar(255)
+  role String? @db.VarChar(255)
+  user user[]
+}
+
+model seat {
+  id         Int       @id @default(autoincrement())
+  name       String?   @db.VarChar(255)
+  status     Boolean?
+  price      Int?
+  TYPE       String?   @db.VarChar(255)
+  showTimeId Int?
+  showtime   showtime? @relation(fields: [showTimeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "seat_ibfk_1")
+
+  @@index([showTimeId], map: "showTimeId")
+}
+
+model showtime {
+  id        Int       @id @default(autoincrement())
+  startTime DateTime? @db.DateTime(0)
+  cinemaId  Int?
+  cinema    cinema?   @relation(fields: [cinemaId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "showtime_ibfk_1")
+  seat      seat[]
+
+  @@index([cinemaId], map: "cinemaId")
+}
+
+model ticket {
+  id      Int    @id @default(autoincrement())
+  userId  Int?
+  movieId Int?
+  user    user?  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ticket_ibfk_1")
+  movie   movie? @relation(fields: [movieId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ticket_ibfk_2")
+
+  @@index([movieId], map: "movieId")
+  @@index([userId], map: "userId")
+}
+
+model user {
+  id       Int      @id @default(autoincrement())
+  name     String   @db.VarChar(255)
+  email    String   @db.VarChar(255)
+  phone    String   @db.VarChar(255)
+  password String   @db.VarChar(255)
+  roleId   String?  @db.VarChar(255)
+  role     role?    @relation(fields: [roleId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_ibfk_1")
+  ticket   ticket[]
+
+  @@index([roleId], map: "roleId")
+}
+
+model banner {
+  id       Int     @id @default(autoincrement())
+  banner   String? @db.VarChar(255)
+  movie_id Int?
+  movie    movie?  @relation(fields: [movie_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "banner_ibfk_1")
+
+  @@index([movie_id], map: "movie_id")
+}

@@ -1,0 +1,56 @@
+CREATE TABLE user(
+	id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, roleId VARCHAR(255), FOREIGN KEY (roleId) REFERENCES role(id))
+	
+CREATE TABLE movie (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	startDate DATE,
+	time INT,
+	evaluate INT,
+	poster VARCHAR(255) NOT NULL,
+	trailer VARCHAR(255))
+CREATE TABLE ticket (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	userId INT,
+	movieId INT,
+	FOREIGN KEY (userId) REFERENCES user(id),
+	FOREIGN KEY (movieId) REFERENCES movie (id))
+CREATE TABLE cinema_movie (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	cinemaId INT,
+	movieId INT,
+	FOREIGN KEY (movieId) REFERENCES movie (id))
+CREATE TABLE cineflex (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(255),
+	logo VARCHAR(255))
+CREATE TABLE cinema (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	address VARCHAR(255),
+	image VARCHAR(255),
+	cineplexId INT,
+	FOREIGN KEY (cineplexId) REFERENCES cineflex (id))
+CREATE TABLE showtime (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	startTime DATETIME,
+	cinemaId INT,
+	FOREIGN KEY (cinemaId) REFERENCES cinema (id))
+CREATE TABLE seat (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(255),
+	status BOOLEAN,
+	price INT,
+	TYPE VARCHAR(255),
+	showTimeId INT,
+	FOREIGN KEY (showTimeId) REFERENCES showtime (id))
+CREATE TABLE role (
+	id VARCHAR(255) PRIMARY KEY,
+	role VARCHAR(255))
+CREATE TABLE banner(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	banner VARCHAR(255),
+	movie_id INT,
+	FOREIGN KEY (movie_id) REFERENCES movie(id)
+)
+ALTER TABLE showtime AUTO_INCREMENT = 1
