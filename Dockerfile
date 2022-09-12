@@ -4,13 +4,13 @@ WORKDIR /usr/src/app
 
 COPY package*.json /
 
-RUN yarn install
+RUN npm install
 
 COPY . .
 
 EXPOSE 8080
 
-RUN yarn prisma generate
+RUN npm prisma generate
 RUN npm install pm2 -g
 
 CMD ["yarn","start"]
