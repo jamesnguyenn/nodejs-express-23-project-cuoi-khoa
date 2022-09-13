@@ -23,3 +23,4 @@ app.listen(port, () => {
 const rootRouter = require('./routers/index');
 
 app.use('/api', rootRouter);
+console.log("Hello Worlds")
