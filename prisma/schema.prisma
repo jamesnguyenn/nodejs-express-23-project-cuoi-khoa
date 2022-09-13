@@ -27,25 +27,21 @@ model cinema {
 }
 
 model cinema_movie {
-  id       Int    @id @default(autoincrement())
+  id       Int  @id @default(autoincrement())
   cinemaId Int?
   movieId  Int?
-  movie    movie? @relation(fields: [movieId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "cinema_movie_ibfk_1")
 
   @@index([movieId], map: "movieId")
 }
 
 model movie {
-  id           Int            @id @default(autoincrement())
-  name         String         @db.VarChar(255)
-  startDate    DateTime?      @db.DateTime(0)
-  time         DateTime?      @db.DateTime(0)
-  evaluate     Int?
-  poster       String         @db.VarChar(255)
-  trailer      String?        @db.VarChar(255)
-  banner       banner[]
-  cinema_movie cinema_movie[]
-  ticket       ticket[]
+  id        Int       @id @default(autoincrement())
+  name      String    @db.VarChar(255)
+  startDate DateTime? @db.DateTime(0)
+  time      DateTime? @db.DateTime(0)
+  evaluate  Int?
+  poster    String    @db.LongText
+  trailer   String?   @db.VarChar(255)
 }
 
 model role {
@@ -77,25 +73,22 @@ model showtime {
 }
 
 model ticket {
-  id      Int    @id @default(autoincrement())
+  id      Int  @id @default(autoincrement())
   userId  Int?
   movieId Int?
-  user    user?  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ticket_ibfk_1")
-  movie   movie? @relation(fields: [movieId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ticket_ibfk_2")
 
   @@index([movieId], map: "movieId")
   @@index([userId], map: "userId")
 }
 
 model user {
-  id       Int      @id @default(autoincrement())
-  name     String   @db.VarChar(255)
-  email    String   @db.VarChar(255)
-  phone    String   @db.VarChar(255)
-  password String   @db.VarChar(255)
-  roleId   String?  @db.VarChar(255)
-  role     role?    @relation(fields: [roleId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_ibfk_1")
-  ticket   ticket[]
+  id       Int     @id @default(autoincrement())
+  name     String  @db.VarChar(255)
+  email    String  @db.VarChar(255)
+  phone    String  @db.VarChar(255)
+  password String  @db.VarChar(255)
+  roleId   String? @db.VarChar(255)
+  role     role?   @relation(fields: [roleId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_ibfk_1")
 
   @@index([roleId], map: "roleId")
 }
@@ -104,7 +97,6 @@ model banner {
   id       Int     @id @default(autoincrement())
   banner   String? @db.VarChar(255)
   movie_id Int?
-  movie    movie?  @relation(fields: [movie_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "banner_ibfk_1")
 
   @@index([movie_id], map: "movie_id")
 }

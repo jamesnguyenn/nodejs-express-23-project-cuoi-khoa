@@ -68,8 +68,9 @@ const uploadPosterMovie = async (req, res) => {
     try {
         const { id } = req.query;
         console.log(req.file)
-        const base64Photo = convertBase64(req.file)
-        console.log("🚀 ~ base64Photo", base64Photo)
+        const dataImagePrefix = `data:image/png;base64,`
+        const base64Photo = dataImagePrefix+  req.file.buffer.toString('base64')
+        successCode(res,base64Photo)
         const isHaveMovie = await prisma.movie.findFirst({
             where: {
                 id: Number(id),
@@ -143,6 +144,33 @@ const createMovie = async (req, res) => {
     }
 };
 
+const deleteMovie = async(req,res)=>{
+    try {
+        const {id} =req.query;
+        const movieCinema = await prisma.cinema_movie.findFirst({
+            where:{
+                id: Number(id)
+            }
+        })
+        if(movieCinema) {
+            const deleteMovie = await prisma.cinema_movie.delete({
+            where:{
+                id:movieCinema.id
+            }
+        })
+        } 
+        const response= await prisma.movie.delete({
+            where:{
+                id:Number(id)
+            }
+        })
+        successCode(res,response)
+    } catch (error) {
+        console.log(error);
+        failCode(res)
+    }
+}
+
 module.exports = {
     getBanner,
     getMovieLists,
@@ -151,4 +179,5 @@ module.exports = {
     createMovie,
     editMovie,
     uploadPosterMovie,
+    deleteMovie
 };

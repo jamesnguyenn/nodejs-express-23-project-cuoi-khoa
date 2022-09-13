@@ -1,6 +1,7 @@
 const express = require('express');
-var multer = require('multer');
-var upload = multer({ dest: 'uploads/' });
+const multer  = require('multer')
+const upload = multer({ })
+
 
 const movieManagementController = require('../../controllers/movieManagementController');
 
@@ -25,5 +26,6 @@ movieManagement.post(
 );
 movieManagement.post('/createMovie', movieManagementController.createMovie);
 movieManagement.post('/editMovie', movieManagementController.editMovie);
+movieManagement.delete('/removeMovie',movieManagementController.deleteMovie);
 
 module.exports = movieManagement;

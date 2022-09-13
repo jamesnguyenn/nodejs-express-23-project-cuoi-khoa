@@ -1,0 +1,685 @@
+{
+	"info": {
+		"_postman_id": "04dc9a27-8541-4c78-a9ec-5eab6ca3f572",
+		"name": "Movie API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19409781"
+	},
+	"item": [
+		{
+			"name": "Quản lý đặt vé",
+			"item": [
+				{
+					"name": "Tạo lịch chiếu",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"movieId\": 1,\n  \"startTime\": \"04/09/2022 08:56:20\",\n  \"cinemaId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/bookingTicket/v1/createShowTime",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"bookingTicket",
+								"v1",
+								"createShowTime"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy danh sách phòng vé",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/bookingTicket/v1/getCinemaLists",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"bookingTicket",
+								"v1",
+								"getCinemaLists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Đặt vé",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"showTimeId\": 1,\n  \"ticketLists\": [\n     {\"name\":\"1B\"},\n     {\"name\":\"2B\"}\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/bookingTicket/v1/orderTicket",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"bookingTicket",
+								"v1",
+								"orderTicket"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quản lý người dùng",
+			"item": [
+				{
+					"name": "Lấy danh sách loại người dùng",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/userManagement/v1/getRoleLists",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"userManagement",
+								"v1",
+								"getRoleLists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy danh sách người dùng",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/userManagement/v1/getUserLists",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"userManagement",
+								"v1",
+								"getUserLists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy danh sách người dùng phân trang",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/userManagement/v1/getUserListsPagination?page=1&results_per_page=5",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"userManagement",
+								"v1",
+								"getUserListsPagination"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "results_per_page",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tìm kiếm người dùng",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/userManagement/v1/getUserListsPagination?keywords=james",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"userManagement",
+								"v1",
+								"getUserListsPagination"
+							],
+							"query": [
+								{
+									"key": "keywords",
+									"value": "james"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tìm kiếm người dùng phân trang",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/userManagement/v1/getUserListsPagination?keywords=james&page=1&results_per_page=5",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"userManagement",
+								"v1",
+								"getUserListsPagination"
+							],
+							"query": [
+								{
+									"key": "keywords",
+									"value": "james"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "results_per_page",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Đăng ký",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n    \"name\": \"Me\",\n    \"email\": \"nguyenquangthien1951@gmail.com\",\n    \"password\": \"Thien151095@\",\n    \"phone\": \"0932620583\",\n    \"roleId\": \"QuanTri\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/userManagement/v1/register",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"userManagement",
+								"v1",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Đăng nhập",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n    \"password\": \"Thien151095@\",\n    \"phone\": \"0902998513\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/userManagement/v1/login",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"userManagement",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5hbWUiOiJUaGllbiIsImVtYWlsIjoibmd1eWVucXVhbmd0aGllbjE1OTVAZ21haWwuY29tIiwicGhvbmUiOiIwOTAyOTk4NTEzIiwicm9sZSI6IlF1YW5UcmkifSwiaWF0IjoxNjYyMjY5OTQzLCJleHAiOjE2NjIzNTYzNDN9.5iLJGww1L439eXtLW7KZsD16qk27TFB-LVSk8YNyKzs\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/userManagement/v1/checkToken",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"userManagement",
+								"v1",
+								"checkToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Thêm người dùng",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n    \"name\": \"Thien\",\n    \"email\": \"nguyenquangthien195@gmail.com\",\n    \"password\": \"Thien151095@\",\n    \"phone\": \"0902998513\",\n    \"roleId\": \"QuanTri\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/userManagement/v1/register",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"userManagement",
+								"v1",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cập nhật thông tin người dùng",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n    \"name\": \"Cuong\",\n    \"email\": \"nguyenquangthien1595@gmail.com\",\n    \"password\": \"Thien151095\",\n    \"phone\": \"0902998513\",\n    \"roleId\": \"QuanTri\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Xóa người dùng",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n    \"email\": \"nguyenquangthien151095@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/userManagement/v1/removeUser",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"userManagement",
+								"v1",
+								"removeUser"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quản lý phim",
+			"item": [
+				{
+					"name": "Lấy danh sách Banner",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5hbWUiOiJUaGllbiIsImVtYWlsIjoibmd1eWVucXVhbmd0aGllbjE5NUBnbWFpbC5jb20iLCJwaG9uZSI6IjA5MDI5OTg1MTMiLCJyb2xlIjoiUXVhblRyaSJ9LCJpYXQiOjE2NjMwNTUwNDIsImV4cCI6MTY2MzE0MTQ0Mn0.c9KRX0-fD2ziT62SrBI7HrGnVAtLCAmXzcXzfMaF1NI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/movieManagement/v1/getBanner",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"movieManagement",
+								"v1",
+								"getBanner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy danh sách phim",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5hbWUiOiJUaGllbiIsImVtYWlsIjoibmd1eWVucXVhbmd0aGllbjE5NUBnbWFpbC5jb20iLCJwaG9uZSI6IjA5MDI5OTg1MTMiLCJyb2xlIjoiUXVhblRyaSJ9LCJpYXQiOjE2NjI5OTE3NTcsImV4cCI6MTY2MzA3ODE1N30.OXM3OfoWbwxRASVp6ldDpchcFfXZC3aNFci1aBCdxaI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/movieManagement/v1/getMovieLists",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"movieManagement",
+								"v1",
+								"getMovieLists"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy danh sách phim phân trang",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5hbWUiOiJUaGllbiIsImVtYWlsIjoibmd1eWVucXVhbmd0aGllbjE5NUBnbWFpbC5jb20iLCJwaG9uZSI6IjA5MDI5OTg1MTMiLCJyb2xlIjoiUXVhblRyaSJ9LCJpYXQiOjE2NjI4MTA1ODksImV4cCI6MTY2Mjg5Njk4OX0.u1QqCIdN0qa9bmnh6CQysXmL64kcTJaFEPSetho47ms",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/movieManagement/v1/getMovieListsPagination?page=1&results_per_page=5",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"movieManagement",
+								"v1",
+								"getMovieListsPagination"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "results_per_page",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy danh sách phim theo ngày",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5hbWUiOiJUaGllbiIsImVtYWlsIjoibmd1eWVucXVhbmd0aGllbjE5NUBnbWFpbC5jb20iLCJwaG9uZSI6IjA5MDI5OTg1MTMiLCJyb2xlIjoiUXVhblRyaSJ9LCJpYXQiOjE2NjI4MTA1ODksImV4cCI6MTY2Mjg5Njk4OX0.u1QqCIdN0qa9bmnh6CQysXmL64kcTJaFEPSetho47ms",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fromDate\": \"2022-07-09\",\n    \"toDate\": \"2022-09-09\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/movieManagement/v1/getMovieByDate",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"movieManagement",
+								"v1",
+								"getMovieByDate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Quản lý phim",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5hbWUiOiJUaGllbiIsImVtYWlsIjoibmd1eWVucXVhbmd0aGllbjE5NUBnbWFpbC5jb20iLCJwaG9uZSI6IjA5MDI5OTg1MTMiLCJyb2xlIjoiUXVhblRyaSJ9LCJpYXQiOjE2NjI4MTA1ODksImV4cCI6MTY2Mjg5Njk4OX0.u1QqCIdN0qa9bmnh6CQysXmL64kcTJaFEPSetho47ms",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ironman 2\",\n    \"startDate\" : \"2022-04-09 23:11:30\",\n    \"time\": \"2022-04-09 23:11:30\",\n    \"evaluate\": 3,\n    \"poster\": \"\",\n    \"trailer\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/movieManagement/v1/createMovie",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"movieManagement",
+								"v1",
+								"createMovie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cập nhật phim upload",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5hbWUiOiJUaGllbiIsImVtYWlsIjoibmd1eWVucXVhbmd0aGllbjE5NUBnbWFpbC5jb20iLCJwaG9uZSI6IjA5MDI5OTg1MTMiLCJyb2xlIjoiUXVhblRyaSJ9LCJpYXQiOjE2NjI4MTA1ODksImV4cCI6MTY2Mjg5Njk4OX0.u1QqCIdN0qa9bmnh6CQysXmL64kcTJaFEPSetho47ms",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"Spiderman Comming Home\",\n    \"startDate\" : \"2022-04-09 23:11:30\",\n    \"time\": \"2022-04-09 23:11:30\",\n    \"evaluate\": 5,\n    \"poster\": \"\",\n    \"trailer\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/movieManagement/v1/editMovie",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"movieManagement",
+								"v1",
+								"editMovie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload hình ảnh cho phim",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5hbWUiOiJUaGllbiIsImVtYWlsIjoibmd1eWVucXVhbmd0aGllbjE5NUBnbWFpbC5jb20iLCJwaG9uZSI6IjA5MDI5OTg1MTMiLCJyb2xlIjoiUXVhblRyaSJ9LCJpYXQiOjE2NjMwNzU0NDksImV4cCI6MTY2MzE2MTg0OX0.IZNUfDHyBa6s4X3OOiry54S_0j7gAfMltK-UcyVZTLA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/admin/Desktop/database_chat_app.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/movieManagement/v1/uploadPoster?id=1",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"movieManagement",
+								"v1",
+								"uploadPoster"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Xóa phim",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5hbWUiOiJUaGllbiIsImVtYWlsIjoibmd1eWVucXVhbmd0aGllbjE5NUBnbWFpbC5jb20iLCJwaG9uZSI6IjA5MDI5OTg1MTMiLCJyb2xlIjoiUXVhblRyaSJ9LCJpYXQiOjE2NjMwNzU0NDksImV4cCI6MTY2MzE2MTg0OX0.IZNUfDHyBa6s4X3OOiry54S_0j7gAfMltK-UcyVZTLA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{domain}}/movieManagement/v1/removeMovie?id=1",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"movieManagement",
+								"v1",
+								"removeMovie"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "domain",
+			"value": "http://localhost:8080/api",
+			"type": "string"
+		}
+	]
+}
