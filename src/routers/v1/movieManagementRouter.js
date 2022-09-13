@@ -1,6 +1,6 @@
 const express = require('express');
-const multer = require('multer');
-const upload = multer({});
+var multer = require('multer');
+var upload = multer({ dest: 'uploads/' });
 
 const movieManagementController = require('../../controllers/movieManagementController');
 

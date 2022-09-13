@@ -67,7 +67,9 @@ const getMovieByDate = async (req, res) => {
 const uploadPosterMovie = async (req, res) => {
     try {
         const { id } = req.query;
-        const image = convertBase64(req.file);
+        console.log(req.file)
+        const base64Photo = convertBase64(req.file)
+        console.log("🚀 ~ base64Photo", base64Photo)
         const isHaveMovie = await prisma.movie.findFirst({
             where: {
                 id: Number(id),
@@ -77,7 +79,7 @@ const uploadPosterMovie = async (req, res) => {
             return errorCode(res, 'Phim không tồn tại vui lòng thử lại.');
         const response = await prisma.movie.update({
             data: {
-                poster: image,
+                poster: base64Photo,
             },
             where: {
                 id: Number(id),
