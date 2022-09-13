@@ -23,3 +23,6 @@ app.listen(port, () => {
 const rootRouter = require('./routers/index');
 
 app.use('/api', rootRouter);
+app.get('/test',(req,res)=>{
+    res.send("Successfully")
+})
